@@ -72,6 +72,114 @@ In the "__init__" method, the "self" is the instance of the "PersonWithAttribute
 To access an instance attribute, you use the dot notation "a_person.name".
 """
 
+# Define instances methods
+
+
+"""
+The following add an instance method called 'greet()'
+to the 'PersonWithInstanceMethods' class.
+We can use the dot notation to call the 'greet()' instance
+method.
+"""
+
+
+class PersonWithInstanceMethods:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        return f"Hi, it's {self.name}."
+
+
+a_new_person = PersonWithInstanceMethods("Jane", 27)
+print(a_new_person.greet())
+
+
+# Define class atrributes
+
+
+"""
+Unlike instance attributes, class attributes are shared
+by all instances of the class.
+They are helpful if we want to define a class constants or
+variables that keep track of the number of instance of a class.
+"""
+
+
+class PersonWithClassAttributes:
+    counter = 0
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        PersonWithClassAttributes.counter += 1
+
+    def greet(self):
+        return f"Hi it is {self.name}"
+
+
+"""
+- We can access the 'counter' attribute from
+  the 'PersonWithClassAttributes' class.
+- We also can access the 'counter' attribute from
+  any instances of the 'PersonWithClassAttributes'
+  class.
+- To make the 'counter' variable more useful,
+  we can increase its value by one once an object is created.
+  To do it, we increase the 'counter' class attribute in
+  the '__init__()' method.
+"""
+print(PersonWithClassAttributes.counter)  # counter = 0
+another_person = PersonWithClassAttributes("Jhonny", 25)  # counter = 1
+print(another_person.counter)
+yet_another_person = PersonWithClassAttributes("Jhonny", 25)  # counter = 2
+print(yet_another_person.counter)
+
+
+# Define class method
+
+"""
+Like a class attributes, a class method is shared by all instances of the class.
+The first argument of a class method is the class itself.
+By convention, its name 'cls'. Python automatically passes this argument
+to the class method.
+
+Also, we use the '@classmethod' decorator to decorate a class method.
+"""
+
+
+class PersonWithClassMethod:
+    counter = 0
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        PersonWithClassMethod.counter += 1
+
+    def greet(self):
+        return f"Hi, it is {self.name}."
+
+    @classmethod
+    def create_anonymous(cls):
+        return PersonWithClassMethod("Anonymous", 22)
+
+
+"""
+The following example defines a class method that returns an
+anonymous Person object.
+Then shows how to call the create_anonymous() class method
+"""
+
+a_person = PersonWithClassMethod("John", 24)
+print(a_person.counter)
+another_person = PersonWithClassMethod("Jane", 23)
+print(another_person.counter)
+anonim_person = PersonWithClassMethod.create_anonymous()
+print(anonim_person.counter)
+print(anonim_person.name)
+
+
 """
 Learn about object-oriented programming in python,
 including essential concepts such as
