@@ -15,11 +15,11 @@
 # Define a class
 
 
-class Person:
+class Person_class:
     pass
 
 
-person = Person()
+person = Person_class()
 print(person)
 
 """
@@ -178,6 +178,108 @@ print(another_person.counter)
 anonim_person = PersonWithClassMethod.create_anonymous()
 print(anonim_person.counter)
 print(anonim_person.name)
+
+
+# Define static method
+
+"""
+A static method is not bound to class or any instances of the
+class. In python, we use static methods to group logically
+related functions in a class. To define a static method.
+
+To define static method we can use the '@staticmethod' decorator.
+"""
+
+
+class TemperatureConverter:
+
+    @staticmethod
+    def celcius_to_fahrenheit(c):
+        return 9 * c / 5 + 32
+
+    @staticmethod
+    def fahrenheit_to_celcius(f):
+        return 5 * (f - 32) / 9
+
+
+f = TemperatureConverter.celcius_to_fahrenheit(30)
+print(f"{30} celcius = {f}f")
+
+"""
+- For example, we defines a class
+  'TemperatureConverter' that has two static methods
+  that convert from celsius to Fahrenheit and vice versa.
+- To call a static method, we use the
+  'ClassName.static_method_name()' syntax.
+- Notice that Python does not implicitly pass an instance (self)
+  as well as class (cls) as the first argument of a static method.
+"""
+
+
+# Single inheritance
+
+
+"""
+A class can reuse another class by inheriting it.
+When a child class inherits from a parent class,
+the child class can access the attributes and methods
+of the  parent class.
+"""
+
+
+class Person:
+    counter = 0
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.counter += 1
+
+    def greet(self):
+        return f"Hi, my name is {self.name}.\n"
+
+
+class Employee(Person):
+    def __init__(self, name, age, job_title):
+        super().__init__(name, age)
+        self.job_title = job_title
+
+    def greet(self):
+        return super().greet() + f"I am a {self.job_title}."
+
+
+an_employee = Employee("John", 25, "Data Engineer")
+print(an_employee.greet())
+print(an_employee.counter)
+
+another_employee = Employee("Jane", 27, "Data Analyst")
+print(another_employee.greet())
+print(another_employee.counter)
+
+"""
+For example, you can define
+an 'Employee' class that inherits from the 'Person' class.
+Inside the '__init__' method of the 'Employee' class calls
+the '__init__' method of the 'Person' class
+to initialize the 'name' and 'age' attributes.
+The 'super()' allows a child class to access a method
+of the parent class.
+
+The 'Employee' class extends the 'Person' class
+by adding one more attribute called 'job_title'.
+
+The 'Person' is the parent class while
+the 'Employee' is a child class.
+To override the 'greet()' method in the 'Person' class,
+we can define the 'greet()' method in the 'Employee' class.
+
+The 'greet()' method in the 'Employee' is also called
+the 'greet()' method of the 'Person' class.
+In other words, it delegates to a method of the parent class.
+
+The example above creates a new instance of
+the 'Employee' class and call the 'greet()' method.
+"""
 
 
 """
