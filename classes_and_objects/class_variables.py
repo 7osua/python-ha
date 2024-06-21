@@ -8,7 +8,7 @@ class HtmlDocuments:
     extension = "html"
     version = "5"
 
-    def render():
+    def render():  # type: ignore
         print("Rendering the HTML doc ...")
 
 
@@ -52,7 +52,7 @@ version = getattr(HtmlDocuments, "version")
   It returns the value of class variable.
 """
 
-print(HtmlDocuments.media_type)  # AttributeError
+print(HtmlDocuments.media_type)  # AttributeError # type: ignore
 """
 - If we access a class variable that does not exist,
   the 'AttribureError' exception will raise.
@@ -75,7 +75,7 @@ setattr(HtmlDocuments, "version", "5.0")
 - Or we can use the 'setattr()' built-in function.
 """
 
-HtmlDocuments.media_type = "text/json"  # add a new class variable.
+HtmlDocuments.media_type = "text/json"  # add a new class variable. # type: ignore
 setattr(HtmlDocuments, "media_type", "text/html")  # set a value to the class variable.
 """
 Since python is a dynamic language, we can add a class variable
