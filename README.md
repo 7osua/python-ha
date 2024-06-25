@@ -16,3 +16,7 @@ apply the OOP with python.
 1. Create objects in python by defining classes and methods.
 2. Extend classes using inheritence.
 3. SOLID principles in object-oriented programming.
+
+Learn from [Python Tutorial][learning-source]
+
+[learning-source]: https://www.pythontutorial.net/
