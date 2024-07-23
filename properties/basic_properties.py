@@ -173,7 +173,7 @@ The following shows that the 'NewPersonWithProperty.age' is
 a 'property' object.
 """
 
-print(NewPersonWithProperty.age)
+print(NewPersonWithProperty.age)  # type: ignore
 # [Output] <property object at 0x000001EF2586FBF0>
 
 """
