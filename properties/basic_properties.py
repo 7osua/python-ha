@@ -24,7 +24,7 @@ john = Person("John", 18)
 john.age = -1
 
 """
-The assign above is technically valid. However, the 'age' sematically
+The assign above is technically valid. However, the 'age' semantically
 incorrect.
 
 To ensure the 'age' is not zero or negative, you use the 'if' statement
