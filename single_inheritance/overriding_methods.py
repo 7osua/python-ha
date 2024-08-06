@@ -1,5 +1,6 @@
 # link: https://www.pythontutorial.net/python-oop/python-overriding-method/
 
+import re
 
 # Introduction to overriding method
 
@@ -122,3 +123,49 @@ if __name__ == "__main__":
     b_jane = AEmploeyee("Jane", 5000)
     print(b_jane.get_pay())
     # [Output] 5000
+
+
+# Advanced method overriding
+
+
+# Define a 'Parser' class
+class Parser:
+    def __init__(self, text):
+        self.text = text
+
+    def email(self):
+        match = re.search(r"[a-z0-9\.\-+_]+@[a-z0-9\.\-+_]+\.[a-z]+", self.text)
+
+        if match:
+            return match.group(0)
+        return None
+
+    def phone(self):
+        match = re.search(r"\d{3}-\d{3}-\d{4}", self.text)
+
+        if match:
+            return match.group(0)
+        return None
+
+    def parse(self):
+        return {"email": self.email(), "phone": self.phone()}
+
+
+s = "Contact us via 408-205-5663 or email@test.com"
+parser = Parser(s)
+print(parser.parse())
+# [Output] {'email': 'email@test.com', 'phone': '408-205-5663'}
+
+
+"""
+The 'Parser' class has an attribute 'text' which specifies a piece of text
+to be parse. Also, the 'Parser' class has three methods:
+
+    - The 'emial()' method parses a text and returns the 'email'.
+    - The 'phone()' method parses a text and returns a phone number
+      in the format 'nnn-nnn-nnnn' where 'n' is a number from
+      0 to 9 e.g. '408-205-5663'.
+    - The 'parse()' method returns a dictionary that contains two elements
+      the 'email' and the 'phone'. It calls the 'email()' and the 'phone()' method
+      to extract the email and the phone from the 'text' attribute.
+"""
