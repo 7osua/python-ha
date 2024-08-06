@@ -161,11 +161,52 @@ print(parser.parse())
 The 'Parser' class has an attribute 'text' which specifies a piece of text
 to be parse. Also, the 'Parser' class has three methods:
 
-    - The 'emial()' method parses a text and returns the 'email'.
+    - The 'email()' method parses a text and returns the 'email'.
     - The 'phone()' method parses a text and returns a phone number
       in the format 'nnn-nnn-nnnn' where 'n' is a number from
       0 to 9 e.g. '408-205-5663'.
     - The 'parse()' method returns a dictionary that contains two elements
       the 'email' and the 'phone'. It calls the 'email()' and the 'phone()' method
       to extract the email and the phone from the 'text' attribute.
+
+Then we uses the 'Parser' class to extract email dan phone. But, suppose you need to
+extract phone numbers in the format 'n-nnn-nnn-nnnn', which is the UK phone number
+format. Also, you want to extract email like the 'Parser' class.
+
+To do it, you can define a new class called 'UKParser' that inherits from
+the 'Parser' class. In the 'UKParser' class, you override the 'phone()' method.
+Then you use the 'UKParser' class  to extract a phone number (in UK format) and
+email from a text.
+"""
+
+
+class UKParser(Parser):
+
+    def phone(self):
+        match = re.search(r"(\+\d{1}-\d{3}-\d{3}-\d{4})", self.text)
+
+        if match:
+            return match.group(0)
+        return None
+
+
+s2 = "Contact me via +1-650-453-3456 or email@test.co.uk"
+parser = UKParser(s2)
+print(parser.parse())
+# [Output] {'email': 'email@test.co.uk', 'phone': '+1-650-453-3456'}
+
+"""
+In this ecample, the 'parse' calls the 'parse()' method from the parent class
+which is the 'Parser' class. In turn, the 'parse()' method calls the 'email()' and
+'phone()' methods.
+
+However, the 'parser()' doesn't call the 'phone()' method of the 'Parser' class
+but the 'phone()' method of the 'UKParser' class.
+
+The reason is that inside the 'parse()' method, the 'self' is the 'parser' which
+is an instance of the 'UKParser' class.
+
+Therefore, when you call the 'self.phone()' method inside the 'parse()' method,
+python will look for the 'phone()' method that is bound to the instance of
+the 'UKParser'.
 """
