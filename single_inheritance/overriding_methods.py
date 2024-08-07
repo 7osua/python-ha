@@ -210,3 +210,16 @@ Therefore, when you call the 'self.phone()' method inside the 'parse()' method,
 python will look for the 'phone()' method that is bound to the instance of
 the 'UKParser'.
 """
+
+# The overriding attributes
+# single_inheritance\overriding_methods.py
+
+"""
+Learn how to use the overriding method to allow a child class to provide
+a specific implementation of a method that is provided by one of
+its parent classes.
+
+[Summary]
+- Method overriding allows a child class tot provide a specific implementation
+  of a method that is already provided by one of its parent class.
+"""
